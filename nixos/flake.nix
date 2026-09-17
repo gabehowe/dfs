@@ -8,13 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cosmic-manager = {
-      url = "github:HeitorAugustoLN/cosmic-manager";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
-    };
     nixpkgs-patch-nvidia-615 = {
       url = "https://github.com/NixOS/nixpkgs/pull/561660.diff";
       flake = false;
@@ -31,7 +24,6 @@
       self,
       nixpkgs,
       home-manager,
-      cosmic-manager,
       winapps,
       nixpkgs-patcher,
       ...
@@ -100,7 +92,6 @@
               users.gabri = {
                 imports = [
                   ./home/home.nix
-                  cosmic-manager.homeManagerModules.cosmic-manager
                 ];
               };
             };
@@ -129,7 +120,6 @@
               users.gabri = {
                 imports = [
                   ./home/home.nix
-                  cosmic-manager.homeManagerModules.cosmic-manager
                 ];
               };
             };
