@@ -22,8 +22,6 @@
   ];
 
   ## Nix configuration
-  # Copy config files current system directory.
-  system.copySystemConfiguration = true;
   system.nixos.label = "g${inputs.self.shortRev or inputs.self.dirtyShortRev}";
   nix.settings.experimental-features = [
     "nix-command"
@@ -86,7 +84,7 @@
   ## Printer and scanner
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
   };
   services.printing.enable = true;
   hardware.sane.enable = true;

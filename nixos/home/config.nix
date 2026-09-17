@@ -1,29 +1,5 @@
 { pkgs, inputs, ... }:
 {
-  # home.file.".config/ghostty/themes/papercolor-dark".text = ''
-  # 	palette = 0 = #1c1c1c
-  # 	palette = 1 = #af005f
-  # 	palette = 2 = #5faf00
-  # 	palette = 3 = #d7af5f
-  # 	palette = 4 = #5fafd7
-  # 	palette = 5 = #808080
-  # 	palette = 6 = #d7875f
-  # 	palette = 7 = #d0d0d0
-  # 	palette = 8 = #585858
-  # 	palette = 9 = #5faf5f
-  # 	palette = 10= #afd700
-  # 	palette = 11= #af87d7
-  # 	palette = 12= #ffaf00
-  # 	palette = 13= #ff5faf
-  # 	palette = 14= #00afaf
-  # 	palette = 15= #5f8787
-  # 	background = #1c1c1c
-  # 	foreground = #d0d0d0
-  # 	cursor-color = #5faf5f
-  # 	cursor-text = #c6c6c6
-  # 	selection-background = #8787af
-  # 	selection-foreground = #000000
-  # '';
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -36,6 +12,9 @@
     extraConfig = ''
       bind '"' split-window -v -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
+      set status-style fg=#d0d0d0,bg=#444444
+      set -g window-status-current-style "fg=#d20072,bold,bg=default"
+      set -g pane-active-border-style bg=default,fg=#af005f
     '';
   };
 }
