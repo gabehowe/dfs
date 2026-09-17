@@ -64,7 +64,7 @@ with lib;
       wayland.enable = true;
     };
     home-manager.sharedModules = [
-      {
+      ({config, pkgs, dotfiles, ...}: {
         services.hypridle = {
           enable = true;
           settings = {
@@ -87,9 +87,10 @@ with lib;
           name = "Vanilla-DMZ";
           size = 16;
         };
-      }
+        xdg.configFile."hypr/hyprland.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hyprland/hyprland.lua";
+        xdg.configFile."waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hyprland/waybar-style.css";
+      })
       {
-        xdg.configFile."hyprland/hyprland.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hyprland/hyprland.lua";
         wayland.windowManager.hyprland = {
           enable = true;
 
@@ -184,64 +185,6 @@ with lib;
         };
         programs.waybar = {
           enable = true;
-          style = ''
-                      @define-color text #fcfcfc;
-            @define-color gray #000000;
-            @define-color green shade(#5faf00, 1.2);
-            @define-color accent shade(#af005f, 1.2);
-            @define-color background #2a2a2a;
-            @define-color yellow shade(#ffaf00, 1.2);
-
-            window {
-                font-family: "Ubuntu Nerd Font";
-            }
-            window#waybar {
-                background: none;
-            }
-            .module {
-                background-color: @background;
-                padding: 2px 5px;
-                margin: 0 2px;
-                border-radius: 5px;
-                color: @text;
-            }
-            #battery.charging {
-            	color: @green;
-            }
-            #wireplumber.muted {
-            	color: @accent;
-            }
-            #bluetooth:active {
-                background-color:blue;
-            }
-            #workspaces {
-                background: none;
-                padding: 0px;
-            }
-            #workspaces button{
-                background: @background;
-                margin:0 1px;
-                padding: 0px;
-                min-width:  25px;
-                min-height: 25px;
-                font-size: 14pt;
-            }
-            #workspaces button.visible {
-                color: @accent;
-            }
-
-            #power-profiles-daemon  {
-            	padding-left: 0px;
-            	margin-left: -7px;
-            	color: @yellow;
-            }
-            #power-profiles-daemon.performance {
-            	color: @accent;
-            }
-            #power-profiles-daemon.power-saver {
-            	color: @green;
-            }
-          '';
           settings = {
             mainBar = {
               modules-left = [ "hyprland/workspaces" ];
