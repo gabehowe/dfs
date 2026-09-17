@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  dotfiles,
   ...
 }:
 with lib;
@@ -88,6 +89,7 @@ with lib;
         };
       }
       {
+        xdg.configFile."hyprland/hyprland.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hyprland/hyprland.lua";
         wayland.windowManager.hyprland = {
           enable = true;
 
@@ -98,8 +100,6 @@ with lib;
           # exec-once is broken in settings (generates invalid hl.exec-once).
           # Use extraLuaConfig with hl.on("hyprland.start", ...) instead.
           # See: https://github.com/nix-community/home-manager/issues/9341
-
-          extraConfig = builtins.readFile ./hyprland/hyprland.lua;
         };
       }
       {

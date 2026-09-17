@@ -48,14 +48,17 @@
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-      nixosConfigurations.minimus = nixpkgs-patcher.lib.nixosSystem {
-        system = "x86_64-linux";
-        nixpkgsPatcher.inputs = inputs;
-        specialArgs = {
+      nixosConfigurations.minimus =
+        let args = {
           host = "minimus";
           battery = true;
+          dotfiles = "/home/gabri/.dotfiles";
           inherit inputs system;
-        };
+        }; in
+        nixpkgs-patcher.lib.nixosSystem {
+        system = "x86_64-linux";
+        nixpkgsPatcher.inputs = inputs;
+        specialArgs = args;
         modules = [
           ./configuration.nix
           ./hyprland.nix
@@ -63,10 +66,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              extraSpecialArgs = {
-                host = "minimus";
-                dotfiles = "/home/gabri/.dotfiles";
-              };
+              extraSpecialArgs = args;
               useGlobalPkgs = true;
               useUserPackages = true;
               users.gabri = {
