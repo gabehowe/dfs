@@ -1,0 +1,83 @@
+% Tashfeen's code block beautification using package listings
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hwlst}[2021/01/01 hwlst]
+
+\RequirePackage{listings, xcolor, multicol}
+\definecolor{PCLightBg}{HTML}{EEEEEE}
+\definecolor{PCLightFg}{HTML}{444444}
+\definecolor{PCLightComment}{HTML}{878787}
+\definecolor{PCLightString}{HTML}{5F8700}
+\definecolor{PCLightNumber}{HTML}{D75F00}
+\definecolor{PCLightIdentifier}{HTML}{005F87}
+\definecolor{PCLightKeyword}{HTML}{005FAF}
+\definecolor{PCLightStatement}{HTML}{D70087}
+\definecolor{PCLightConditional}{HTML}{8700AF}
+\definecolor{PCLightException}{HTML}{D70000}
+\definecolor{PCLightOperator}{HTML}{0087AF}
+\definecolor{PCLightLineNo}{HTML}{B2B2B2}
+\definecolor{PCLightRule}{HTML}{005F87}
+
+\lstset{
+  %backgroundcolor=\color{PCLightBg},
+  basicstyle=\ttfamily\small\color{PCLightFg},
+  %identifierstyle=\color{PCLightIdentifier},
+  commentstyle=\itshape\color{PCLightComment},
+  stringstyle=\color{PCLightString},
+  keywordstyle=\color{PCLightKeyword},
+  keywordstyle=[2]\bfseries\color{PCLightStatement},
+  keywordstyle=[3]\bfseries\color{PCLightConditional},
+  keywordstyle=[4]\color{PCLightException},
+  numberstyle=\scriptsize\color{PCLightLineNo},
+  rulecolor=\color{PCLightRule},
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  xleftmargin=2em,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  frame=tb
+}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{comment}{HTML}{444444}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeyellow}{rgb}{0.51, 0.37, 0.012}
+
+\lstdefinelanguage{papercolor-python}{
+  language=Python,
+  sensitive=true,
+  morekeywords=[1]{and,or,not,in,is},
+  morekeywords=[2]{def,class,lambda,return,yield,pass,assert,del,global,nonlocal,with,as},
+  morekeywords=[3]{if,elif,else,for,while,match,case,break,continue},
+  morekeywords=[4]{import,from,try,except,finally,raise},
+  morekeywords=[5]{True,False,None},
+  morekeywords=[6]{self,cls,len,range,print,str,int,float,bool,list,dict,set,tuple,open,enumerate,zip,map,filter,sum,min,max,any,all},
+  morecomment=[l]\#,
+  morestring=[b]',
+  morestring=[b]",
+  morestring=[s]{'''}{'''},
+  morestring=[s]{"""}{"""},
+  alsoletter={@},
+  morekeywords=[7]{@property,@classmethod,@staticmethod,@dataclass},
+  keywordstyle=\color{PCLightKeyword},
+  keywordstyle=[2]\bfseries\color{PCLightStatement},
+  keywordstyle=[3]\bfseries\color{PCLightConditional},
+  keywordstyle=[4]\color{PCLightException},
+  keywordstyle=[5]\bfseries\color{PCLightString},      % booleans/None
+  keywordstyle=[6]\color{PCLightKeyword},              % optional builtins
+  keywordstyle=[7]\color{PCLightNumber},               % decorators ~= orange
+  commentstyle=\itshape\color{PCLightComment},
+  stringstyle=\color{PCLightString},
+  %identifierstyle=\color{PCLightIdentifier}
+}
+
+\lstdefinestyle{papercolor-light-python}{
+  style=papercolor-light,
+  language=papercolor-python
+}

@@ -36,7 +36,6 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
-    #LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     PROJECT_DATABASE = "$HOME/dev/projects";
     PRJ_DB_DIR = "$HOME/dev/database";
     LIBVIRT_DEFAULT_URI = "qemu:///system";
