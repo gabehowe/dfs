@@ -4,17 +4,10 @@
   inputs,
   ...
 }:
-let
-  vimrc = builtins.readFile ./vimrc;
-in
 {
 
-  home.file.".vim/plugin" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/vim/plugin";
-    recursive = true;
-  };
-  home.file.".vim/ftplugin" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/vim/ftplugin";
+  home.file.".vim/" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/vim";
   };
 
   home.packages = with pkgs; [
@@ -41,10 +34,10 @@ in
       delimitMate
       (pkgs.vimUtils.buildVimPlugin {
         name = "ultisnips-highlight";
-        src = ./plugin;
+        src = ../../vim/plugin;
       })
     ];
-    extraConfig = vimrc;
+    extraConfig = builtins.readFile ../../vim/vimrc;
   };
 
 }
