@@ -2,12 +2,13 @@
   config,
   pkgs,
   inputs,
+  dotfiles,
   ...
 }:
 {
 
   xdg.configFile."vim/" = {
-    source = config.lib.file.mkOutOfStoreSymlink "../../vim";
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/vim";
   };
 
   home.packages = with pkgs; [

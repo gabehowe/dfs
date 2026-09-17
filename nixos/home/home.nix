@@ -10,11 +10,11 @@
     ./config.nix
     ./packages.nix
     ./vim.nix
+    ./management.nix
   ];
   home.username = "gabri";
   home.homeDirectory = "/home/gabri";
 
-  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
   home.stateVersion = "25.05"; # Please read the comment before changing.
   targets.genericLinux.enable = true;
 

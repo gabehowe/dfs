@@ -65,6 +65,7 @@
             home-manager = {
               extraSpecialArgs = {
                 host = "minimus";
+                dotfiles = "/home/gabri/.dotfiles";
               };
               useGlobalPkgs = true;
               useUserPackages = true;
