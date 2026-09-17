@@ -13,7 +13,7 @@
 }:
 {
   imports = [
-    ./${host}-hardware.nix
+    ./hardware/${host}-hardware.nix
     ./packages/apps.nix
     ./packages/fonts.nix
     ./packages/lang-tools.nix
