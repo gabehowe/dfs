@@ -1,0 +1,141 @@
+colorscheme PaperColor
+set encoding=utf-8
+set background=dark
+set nocompatible " disable vi compatibility mode
+set foldmethod=syntax
+set linebreak
+set showbreak=+
+set display=lastline
+set autoread
+set history=1000
+set formatoptions+=j
+"set spell
+
+"set autoindent
+set tabstop=4
+set shiftwidth=4
+
+set number
+set conceallevel=0
+set smoothscroll
+set title
+set scrolloff=1
+set sidescrolloff=5
+
+set incsearch
+set hlsearch
+set smartcase
+set ignorecase
+"filetype off
+"let g:ale_enabled = 0
+
+" clear highlighting on escape
+syntax enable
+" move up and down display lines instead of logical lines
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+" Change cursor to bar when in insert mode
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+
+" Change leader to space
+let g:mapleader = "\<space>"
+let maplocalleader = "\<Space>"
+
+
+" UltiSnips {{{
+let g:UltiSnipsExpandTrigger       = ';'    " use Tab to expand snippets
+let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward through tabstops
+let g:UltiSnipsJumpBackwardTrigger = '<c-B>'  " use Shift-Tab to move backward through tabstops
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snips']
+
+map <leader>s  <Plug>(easymotion-s)
+
+augroup filetypedetect
+        au BufNewFile,BufRead *.msnippets set syntax=snippets
+augroup END
+" }}}
+" Rainbow Brackets {{{
+let g:rainbow_active = 1
+let g:qs_enable=0
+
+
+hi Conceal ctermfg=109 ctermbg=236
+
+"packadd ycm
+"let g:loaded_youcompleteme = 1
+" }}}
+
+" vim-airline {{{
+let g:airline_theme='angr'
+let g:airline_powerline_fonts=1
+
+let g:python_highlight_all = 1
+" }}}
+" NERDCommenter
+map <C-/> <plug>NERDCommenterToggle
+let g:NERDCreateDefaultMappings = 0
+
+" Vim Slime {{{
+let g:slime_target = "vimterminal"
+let g:slime_python_ipython=1
+" }}}
+"
+"
+"
+setlocal spell
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+let g:vimtex_view_method = 'zathura'
+let g:latex_view_general_viewer = 'zathura'
+highlight texCmdCQuestion ctermfg=127
+highlight link texCNsectionArg texPartArgTitle
+" if empty(v:servername) && exists('*remote_startserver')
+"         call remote_startserver('VIM')
+" endif
+let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
+
+let g:vimtex_toggle_fractions = {
+        \ 'INLINE': 'dfrac',
+        \ 'dfrac': 'frac',
+		\ 'frac': 'INLINE'
+        \}
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+        \ 'out_dir': './pdfs',
+        \ 'aux_dir': './.aux',
+        \ 'options': [
+         \   '-pdf',
+         \   '-shell-escape',
+         \   '-verbose',
+         \   '-file-line-error',
+         \   '-synctex=1',
+         \   '-interaction=nonstopmode',
+         \ ],
+        \}
+
+let g:highlightedyank_highlight_duration = 200
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+let g:vimtex_syntax_custom_cmds = [{'name':'nsection', 'cmdre':'n(sub)*section\**'}, 
+			\ {'name': 'question'},
+			\ {'name': 'term', 'argstyle': 'bold'},
+			\ {'name': 'jterm', 'argstyle': 'bold'}]
+let g:vimtex_fold_enabled=0
+let g:ycm_semantic_triggers = {
+    \ 'tex' : g:vimtex#re#youcompleteme
+    \}
+
+let g:ale_tex_chktex_options = "-I -n1 -n3 -n8 -n36"
+"" markdown
+let g:vim_markdown_math = 1
+let g:vim_markdown_strikethrough = 1
+
+au FileType tex let b:delimitMate_quotes = " ' $"
+let delimitMate_excluded_regions = ""
