@@ -8,7 +8,6 @@
 {
   imports = [
     ./config.nix
-    ./packages.nix
     ./vim.nix
     ./management.nix
   ];
@@ -125,7 +124,6 @@
                   fi
       	'';
   };
-  #programs.gpg.enable=true;
   xdg.userDirs.setSessionVariables = true;
   services.gpg-agent = {
     enable = true;
