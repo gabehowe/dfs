@@ -10,12 +10,11 @@ in
 {
 
   home.file.".vim/plugin" = {
-    source = ./plugin;
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/vim/plugin";
     recursive = true;
   };
   home.file.".vim/ftplugin" = {
-    source = ./ftplugin;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/vim/ftplugin";
   };
 
   home.packages = with pkgs; [

@@ -9,7 +9,7 @@
   imports = [
     ./config.nix
     ./packages.nix
-    ./vim/vim.nix
+    ./vim.nix
   ];
   home.username = "gabri";
   home.homeDirectory = "/home/gabri";
