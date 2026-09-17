@@ -14,7 +14,7 @@
   home.username = "gabri";
   home.homeDirectory = "/home/gabri";
 
-  home.file.".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
+  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
   home.stateVersion = "25.05"; # Please read the comment before changing.
   targets.genericLinux.enable = true;
 

@@ -6,8 +6,8 @@
 }:
 {
 
-  home.file.".vim/" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/vim";
+  xdg.configFile."vim/" = {
+    source = config.lib.file.mkOutOfStoreSymlink "../../vim";
   };
 
   home.packages = with pkgs; [
