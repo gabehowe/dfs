@@ -139,3 +139,4 @@ let g:vim_markdown_strikethrough = 1
 
 au FileType tex let b:delimitMate_quotes = " ' $"
 let delimitMate_excluded_regions = ""
+set keyprotocol=tmux-256color:kitty

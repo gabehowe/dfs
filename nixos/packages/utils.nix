@@ -53,6 +53,7 @@
     dmidecode
     wl-clipboard
     tree
+    brightnessctl
   ];
   # traceroute/ping
   programs.mtr.enable = true;

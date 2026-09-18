@@ -28,6 +28,11 @@
     "flakes"
   ];
   services.flatpak.enable = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      tmux = final.callPackage ./custom-packages/tmux-kitty.nix {};
+    })
+  ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") {
@@ -127,14 +132,11 @@
     };
     wireplumber = {
       enable = true;
-      configPackages = [
-        # Disable headset auto switching.
-        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/11-bluetooth-policy.conf" ''
-          wireplumber.settings = {
-            bluetooth.autoswitch-to-headset-profile = true
-          }
-        '')
-      ];
+      extraConfig."11-bluetooth-policy" = {
+        "wireplumber.settings" = {
+            "bluetooth.autoswitch-to-headset-profile" = false;
+        };
+      };
     };
   };
 

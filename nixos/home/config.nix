@@ -5,7 +5,7 @@
     mouse = true;
     clock24 = true;
     keyMode = "vi";
-    terminal = "tmux-256color";
+    terminal = "xterm-ghostty";
     escapeTime = 10;
     focusEvents = true;
     shortcut = "a";
