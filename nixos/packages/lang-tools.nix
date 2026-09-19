@@ -45,5 +45,6 @@
     cmake
     gnumake
     clang-tools
+    gdb
   ];
 }

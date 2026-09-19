@@ -39,8 +39,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "tmux";
     repo = "tmux";
-    rev = "75cb580e36d2f79d78f0df0d0d95e6f2411fe0a8";
-    sha256 =  "RWsdMfqNiH95enzKpyDc11/V9S3cAvZs5qJeUJjv2zU=";
+    rev = "1abf9f702303ad9f4f93b60cb79b2d17da357304";
+    sha256 =  "nOG9DPHeawv9E9zdRIH7HFiCvy8dxEj0RbqYqGtSp60=";
   };
 
   nativeBuildInputs = [
