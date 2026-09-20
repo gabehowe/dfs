@@ -10,6 +10,7 @@ set autoread
 set history=1000
 set formatoptions+=j
 "set spell
+let g:UltiSnipsSnippetDirectories = [$HOME."/.config/vim/snips"]
 
 "set autoindent
 set tabstop=4
