@@ -118,5 +118,6 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 
+let g:UltiSnipsSnippetDirectories = [$HOME."/.config/vim/snips"]
 " add latex delimiters.
 "let b:delimitMate_quotes = "\" ' $"
