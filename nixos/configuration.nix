@@ -62,7 +62,11 @@
   systemd.services.NetworkManager-wait-online.enable = false;
   security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
   networking.hostName = host;
-  networking.networkmanager.enable = true;
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager =  {
+    enable = true;
+    wifi.backend = "iwd";
+  };
   services.resolved = {
     enable = true;
     settings.Resolve = {
