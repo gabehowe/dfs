@@ -154,6 +154,10 @@
     pd.enable = battery;
   };
 
+  ## Default environment variables
+  environment.variables = {
+    SSH_ASKPASS = lib.mkForce ""; # Don't use x11-ssh-askpass by default.
+  };
   ## User configuration
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;

@@ -61,6 +61,9 @@ endglobal
 
 # text formatting {{{
 
+snippet :q "physics qty" Ai
+\qty$0
+endsnippet
 snippet pr "Parentheses" i
 \pr{$1}$0
 endsnippet
@@ -444,11 +447,11 @@ $\cvec{$1}$0$
 endsnippet
 
 context "math()"
-snippet ;mag "Magnitude" Ai
-\magn{$1}$0
+snippet ;no "Norm" Ai
+\norm{$1}$0
 endsnippet
-snippet ;mag "Magnitude" Ai
-$\magn{$1}$0$
+snippet ;no "Norm" Ai
+$\norm{$1}$0$
 endsnippet
 
 context "math()"

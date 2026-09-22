@@ -91,7 +91,8 @@
 \DeclarePairedDelimiter \ceil {\lceil}{\rceil}
 \DeclarePairedDelimiter \floor {\lfloor}{\rfloor}
 \DeclarePairedDelimiter \near {\lfloor}{\rceil}
-\DeclarePairedDelimiter \arr {\langle}{\rangle}
+\DeclareDocumentCommand\arr{lm}{\braces#1{\langle}{\rangle}{#2}}
+%\DeclarePairedDelimiter \arr {\langle}{\rangle}
 %%\DeclarePairedDelimiter \abs {\lvert}{\rvert}
 \DeclarePairedDelimiter \magn {\lVert}{\rVert} % Magnitude
 %\DeclarePairedDelimiter \brk {\lbrack }{\rbrack}
