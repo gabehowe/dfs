@@ -48,7 +48,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    timeout = 2;
+    timeout = 0; # Hold space to see bootloader
     grub = {
       device = "nodev";
       efiSupport = true;
