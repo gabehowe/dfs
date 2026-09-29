@@ -64,6 +64,7 @@
 \DeclareDocumentCommand\author{m}{ \str_set:Nn \l_hw_author_str {#1} }
 \DeclareDocumentCommand\class{m}{ \str_set:Nn \l_hw_class_str {#1} }
 \DeclareDocumentCommand\colorseed{m}{ \int_set:Nn \l_hw_colorseed_int {#1}
+\setupnewcolors{\l_hw_colorseed_int}
  }
 \NewDocumentCommand{\setupnewcolors}{m}{%
   \sys_gset_rand_seed:n #1
@@ -112,7 +113,6 @@
     pdfsubject={\l_hw_class_str}
     pdfstartview=FitH,
   }
- \setupnewcolors{\l_hw_colorseed_int}
  \thispagestyle{firstpage}
 }
 \NewDocumentCommand\bottomrule{m}{

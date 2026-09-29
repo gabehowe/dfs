@@ -51,6 +51,7 @@
   hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   services.xserver.videoDrivers = [ "nvidia" ];
+  services.fwupd.enable = true;
   hardware.graphics.enable = true;
 
   # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway

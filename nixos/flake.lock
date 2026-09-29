@@ -69,30 +69,30 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1790578696,
-        "narHash": "sha256-ZoxIApko70jCdbH3l20HWXOBaT2HZd87orzd2yJ9dVE=",
+        "lastModified": 1790600678,
+        "narHash": "sha256-6k3n7X2UsZ6tAlWTz99RimiZab+17tMUrw9sRUcELiA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f",
+        "rev": "f45c6f04c2f013f004bf94e284e95d72898d9393",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
-    "nixpkgs-patch-nvidia-615": {
+    "nixpkgs-patch-claude-284": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-B4MPtacZ7cWgS03ubeVngvYtl2q+ltCDYTxi5pR5+Zk=",
+        "narHash": "sha256-4q34FQgilC1g7fbwnusb/rnXUtk9SpvCh62IqcfRNBA=",
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/561660.diff"
+        "url": "https://github.com/NixOS/nixpkgs/pull/567989.diff"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/561660.diff"
+        "url": "https://github.com/NixOS/nixpkgs/pull/567989.diff"
       }
     },
     "nixpkgs-patcher": {
@@ -114,7 +114,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-patch-nvidia-615": "nixpkgs-patch-nvidia-615",
+        "nixpkgs-patch-claude-284": "nixpkgs-patch-claude-284",
         "nixpkgs-patcher": "nixpkgs-patcher",
         "winapps": "winapps"
       }

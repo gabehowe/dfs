@@ -3,13 +3,13 @@
 
   inputs = {
     nixpkgs-patcher.url = "github:gepbird/nixpkgs-patcher";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-patch-nvidia-615 = {
-      url = "https://github.com/NixOS/nixpkgs/pull/561660.diff";
+    nixpkgs-patch-claude-284 = {
+      url = "https://github.com/NixOS/nixpkgs/pull/567989.diff";
       flake = false;
     };
 

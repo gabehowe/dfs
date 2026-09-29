@@ -16,6 +16,7 @@
     zathuraPkgs.zathura_pdf_mupdf
     tmux
     mathematica
+    claude-code
     #inkscape
   ];
   programs.java = {

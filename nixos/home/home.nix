@@ -15,7 +15,6 @@
   home.homeDirectory = "/home/gabri";
   programs.home-manager.enable = true;
   home.stateVersion = "25.05"; # Please read the comment before changing.
-  targets.genericLinux.enable = true;
 
   xdg = {
     enable = true;

@@ -54,6 +54,7 @@
     wl-clipboard
     tree
     brightnessctl
+    v4l-utils
   ];
   # traceroute/ping
   programs.mtr.enable = true;
