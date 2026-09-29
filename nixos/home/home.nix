@@ -53,6 +53,6 @@
     py = "python3";
     rd = "ripdrag -n -x";
     clip = "xclip -selection clipboard";
-    mpy = "py -i -c \"import sympy as sp; import scipy as sci; import numpy as np; from sympy.abc import x,y,z\"";
+    mpy = "py -i -c \"import sympy as sp; import scipy as sci; import numpy as np; from sympy.abc import x,y,z,t; from sympy import pi,I; k = sp.Symbol('n', integer=True)\"";
   };
 }

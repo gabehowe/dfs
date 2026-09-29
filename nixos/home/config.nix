@@ -96,7 +96,7 @@
       commit.gpgsign = true;
       gpg.format = "openpgp";
       tag.gpgSign = true;
-      user.signingkey = if host == "furunculus" then "8F73AC7627D18889" else "54A940168323447B";
+      user.signingkey = if host == "minimus" then "7DA9FE92F3D95B25" else if host == "furunculus" then "8F73AC7627D18889" else "54A940168323447B";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       receive.denyCurrentBranch = "updateInstead";

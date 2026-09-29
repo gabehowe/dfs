@@ -15,6 +15,7 @@
     spotify
     zathuraPkgs.zathura_pdf_mupdf
     tmux
+    mathematica
     #inkscape
   ];
   programs.java = {
