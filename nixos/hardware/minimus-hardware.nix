@@ -23,8 +23,16 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = lib.mkForce [ "atkbd" "ctr" "kvm-intel" "loop" "msr" "uinput" "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  systemd.services.nvidia-late-load = {
+    wantedBy = [ "multi-user.target"];
+    serviceConfig = {
+      Type = "simple";
+      RemainAfterExit = true;
+      ExecStart= "${pkgs.kmod}/bin/modprobe -a nvidia_drm nvidia_modeset nvidia_uvm";
+    };
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/b1fab90c-34cb-4e22-84f4-184388b9da09";
@@ -50,19 +58,21 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
   services.fwupd.enable = true;
   hardware.graphics.enable = true;
 
   # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway
 
   hardware.nvidia.prime = {
-    sync.enable = true;
+    offload.enable = true;
 
     nvidiaBusId = "PCI:1:0:0";
     intelBusId = "PCI:0:2:0";
   };
   hardware.nvidia = {
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
     modesetting.enable = true;
     open = true;

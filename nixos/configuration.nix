@@ -152,6 +152,9 @@
     enable = battery;
     pd.enable = battery;
   };
+  powerManagement = {
+    enable = battery;
+  };
 
   ## Default environment variables
   environment.variables = {
