@@ -22,7 +22,7 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" ];
   boot.kernelModules = lib.mkForce [ "atkbd" "ctr" "kvm-intel" "loop" "msr" "uinput" "kvm-intel" ];
   boot.extraModulePackages = [ ];
   systemd.services.nvidia-late-load = {
