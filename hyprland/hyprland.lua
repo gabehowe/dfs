@@ -92,7 +92,7 @@ hl.animation({ bezier="easeOutQuint",  enabled=true,  leaf="layersIn",  speed=4,
 hl.animation({ bezier="easeInOutCubic",  enabled=true,  leaf="layersOut",  speed=1.5,  style="fade"})
 hl.animation({ bezier="almostLinear",  enabled=true,  leaf="fadeLayersIn",  speed=1.79})
 hl.animation({ bezier="almostLinear",  enabled=true,  leaf="fadeLayersOut",  speed=1.39})
-hl.animation({ bezier="almostLinear",  enabled=true,  leaf="workspaces",  speed=1.94,  style="fade"})
+hl.animation({ bezier="almostLinear",  enabled=true,  leaf="workspaces",  speed=1.15,  style="fade"})
 hl.animation({ bezier="easeInOutCubic",  enabled=true,  leaf="workspacesIn",  speed=0.65,  style="slidefade"})
 hl.animation({ bezier="easeInOutCubic",  enabled=true,  leaf="workspacesOut",  speed=0.65,  style="slidefade"})
 hl.animation({ bezier="quick",  enabled=true,  leaf="zoomFactor",  speed=1})

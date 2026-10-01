@@ -22,16 +22,24 @@
     "usb_storage"
     "sd_mod"
   ];
+  boot.extraModprobeConfig = ''
+    install nvidia ${pkgs.coreutils}/bin/true
+  '';
   boot.initrd.kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" ];
   boot.kernelModules = lib.mkForce [ "atkbd" "ctr" "kvm-intel" "loop" "msr" "uinput" "kvm-intel" ];
   boot.extraModulePackages = [ ];
   systemd.services.nvidia-late-load = {
-    wantedBy = [ "multi-user.target"];
     serviceConfig = {
-      Type = "simple";
-      RemainAfterExit = true;
-      ExecStart= "${pkgs.kmod}/bin/modprobe -a nvidia_drm nvidia_modeset nvidia_uvm";
+      Type = "oneshot";
+      ExecStart= [
+        "${pkgs.kmod}/bin/modprobe -i nvidia"
+        "${pkgs.kmod}/bin/modprobe -a nvidia_drm nvidia_modeset nvidia_uvm"
+      ];
     };
+  };
+  systemd.timers.nvidia-late-load = {
+    wantedBy = ["timers.target"];
+    timerConfig.OnStartupSec = "6s";
   };
 
   fileSystems."/" = {

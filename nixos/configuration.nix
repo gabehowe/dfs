@@ -63,6 +63,7 @@
   security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
   networking.hostName = host;
   networking.networkmanager =  {
+    logLevel = "DEBUG";
     enable = true;
     wifi.backend = "wpa_supplicant";
   };
