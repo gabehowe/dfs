@@ -33,9 +33,7 @@ return {
 			clangd = {
 				keys = { { "<leader>ch", "<cmd>LspClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" } },
 				cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=iwyu",
-					"--completion-style=detailed", "--function-arg-placeholders", "--fallback-style=gcc",
-					"--query-driver=/usr/bin/clang++,/usr/bin/g++"
-				 },
+					"--completion-style=detailed", "--function-arg-placeholders", "--fallback-style=gcc" },
 			},
 			tinymist = { settings = { exportPdf = 'onType' } }
 		}
