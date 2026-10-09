@@ -26,6 +26,7 @@ execute "hi doxygenSpecial guifg=" . g:terminal_color_6
 execute "hi doxygenBrief guifg=" . g:terminal_color_3
 execute "hi doxygenComment guifg=" . g:terminal_color_3
 execute "hi doxygenSpecialMultilineDesc guifg=" . g:terminal_color_3
+execute "hi doxygenBody guifg=" . g:terminal_color_3
 
 hi @namespace               guifg=#af87d7
 hi @lsp.type.class 			guifg=#00afaf gui=bold

@@ -24,5 +24,6 @@
     package = pkgs.jdk25;
   };
   programs.steam.enable = true;
+  programs.steam.extraCompatPackages = [ pkgs.proton-ge-bin ];
   programs.firefox.enable = true;
 }

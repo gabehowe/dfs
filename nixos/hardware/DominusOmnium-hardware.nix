@@ -12,7 +12,6 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./cachix.nix
   ];
 
   boot.initrd.availableKernelModules = [

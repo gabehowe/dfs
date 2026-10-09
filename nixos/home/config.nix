@@ -169,4 +169,20 @@
     defaultCacheTtl = 3600;
     enableSshSupport = true;
   };
+  xdg.configFile."clangd/config.yaml".text = ''
+    CompileFlags:
+    Add: [-std=c++20]          # extra flags applied on top of compile_commands
+  Diagnostics:
+    UnusedIncludes: Strict
+    ClangTidy:
+      Add: [modernize-*, bugprone-*]
+      Remove: [modernize-use-trailing-return-type]
+  InlayHints:
+    Enabled: Yes
+    ParameterNames: Yes
+    DeducedTypes: Yes
+    Designators: Yes
+  Hover:
+    ShowAKA: Yes
+ '';
 }
