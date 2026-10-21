@@ -72,6 +72,30 @@
     enable = true;
     wifi.backend = "wpa_supplicant";
   };
+
+  ## FluxCast (Miracast/WFD)
+  # Allow wheel to Get/Set wpa_supplicant properties (P2P device name + GO intent).
+  # Mirrors meta/zz-dev.fluxcast.wpa-supplicant.conf from the FluxCast repo.
+  services.dbus.packages = [
+    (pkgs.writeTextDir "share/dbus-1/system.d/zz-dev.fluxcast.wpa-supplicant.conf" ''
+      <!DOCTYPE busconfig PUBLIC
+       "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+       "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+      <busconfig>
+        <policy group="wheel">
+          <allow send_destination="fi.w1.wpa_supplicant1"
+                 send_interface="org.freedesktop.DBus.Properties"
+                 send_member="Get"/>
+          <allow send_destination="fi.w1.wpa_supplicant1"
+                 send_interface="org.freedesktop.DBus.Properties"
+                 send_member="Set"/>
+          <allow receive_sender="fi.w1.wpa_supplicant1"/>
+        </policy>
+      </busconfig>
+    '')
+  ];
+  # Let the TV get DHCP and reach RTSP (7236/tcp) on Wi-Fi Direct group interfaces.
+  networking.firewall.trustedInterfaces = [ "p2p-+" ];
   services.resolved = {
     enable = true;
     settings.Resolve = {

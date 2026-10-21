@@ -55,6 +55,7 @@
     tree
     brightnessctl
     v4l-utils
+    alsa-utils
   ];
   # traceroute/ping
   programs.mtr.enable = true;

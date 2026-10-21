@@ -90,6 +90,62 @@ with lib;
         xdg.configFile."hypr/hyprland.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hyprland/hyprland.lua";
         xdg.configFile."waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hyprland/waybar-style.css";
       })
+      ({ pkgs, ... }:
+        let
+          # gdbus prints each PropertiesChanged signal on one line, e.g.
+          # /org/bluez/hci0/dev_AA_BB_..: ...PropertiesChanged ('org.bluez.Device1', {'Connected': <true>}, @as [])
+          bluetoothNotify = pkgs.writeShellApplication {
+            name = "bluetooth-notify";
+            runtimeInputs = [ pkgs.glib pkgs.bluez pkgs.libnotify pkgs.gnused ];
+            text = ''
+              re="dev_([0-9A-F_]+): .*'org\.bluez\.Device1', \{[^}]*'Connected': <(true|false)>"
+              gdbus monitor --system --dest org.bluez | while read -r line; do
+                [[ $line =~ $re ]] || continue
+                mac=''${BASH_REMATCH[1]//_/:}
+                name=$(bluetoothctl info "$mac" | sed -n 's/^\s*Alias: //p' || true)
+                if [[ ''${BASH_REMATCH[2]} == true ]]; then
+                  notify-send -a Bluetooth -i bluetooth-active -h string:x-dunst-stack-tag:bluetooth "Connected" "''${name:-$mac}"
+                else
+                  notify-send -a Bluetooth -i bluetooth-disabled -h string:x-dunst-stack-tag:bluetooth "Disconnected" "''${name:-$mac}"
+                fi
+              done
+            '';
+          };
+          networkNotify = pkgs.writeShellApplication {
+            name = "network-notify";
+            runtimeInputs = [ pkgs.networkmanager pkgs.libnotify ];
+            text = ''
+              nmcli monitor | while read -r line; do
+                case $line in
+                  *" is now the primary connection")
+                    conn=''${line% is now the primary connection}
+                    notify-send -a Network -i network-wired -h string:x-dunst-stack-tag:network "Connected" "''${conn//\'/}"
+                    ;;
+                  "There's no primary connection")
+                    notify-send -a Network -i network-offline -h string:x-dunst-stack-tag:network "Disconnected" "No network connection"
+                    ;;
+                esac
+              done
+            '';
+          };
+          mkNotifyService = description: exe: {
+            Unit = {
+              Description = description;
+              PartOf = [ "graphical-session.target" ];
+              After = [ "graphical-session.target" ];
+            };
+            Service = {
+              ExecStart = exe;
+              Restart = "on-failure";
+              RestartSec = 5;
+            };
+            Install.WantedBy = [ "graphical-session.target" ];
+          };
+        in
+        {
+          systemd.user.services.bluetooth-notify = mkNotifyService "Bluetooth connection notifications" (lib.getExe bluetoothNotify);
+          systemd.user.services.network-notify = mkNotifyService "Network connection notifications" (lib.getExe networkNotify);
+        })
       {
         wayland.windowManager.hyprland = {
           enable = true;
