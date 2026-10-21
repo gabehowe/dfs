@@ -91,24 +91,40 @@ in
             bat=$(find /sys/class/power_supply/ -maxdepth 1 -name 'BAT*' | head -n1)
             [[ -n $bat ]] || exit 0
 
+            # Plugged in != charging (e.g. "Not charging" at a charge limit), so plug
+            # state comes from the mains adapter rather than the battery status.
+            ac_online() {
+              local s
+              for s in /sys/class/power_supply/*; do
+                [[ $(<"$s/type") == Mains && $(<"$s/online") == 1 ]] && return 0
+              done
+              return 1
+            }
+
             notify() {
               notify-send -a Battery -i "$1" -h string:x-dunst-stack-tag:battery "$2" "$3"
             }
 
+            prev_plugged=$(ac_online && echo 1 || echo 0)
             prev_status=$(<"$bat/status")
             warned=""
             check() {
               cap=$(<"$bat/capacity")
               status=$(<"$bat/status")
+              plugged=$(ac_online && echo 1 || echo 0)
+              if [[ $plugged != "$prev_plugged" ]]; then
+                if [[ $plugged == 1 ]]; then
+                  notify ac-adapter "Plugged in" "$cap%"
+                else
+                  notify battery-good "Unplugged" "$cap%"
+                fi
+                prev_plugged=$plugged
+              fi
               if [[ $status != "$prev_status" ]]; then
-                case $status in
-                  Charging) notify battery-good-charging "Charging" "$cap%" ;;
-                  Discharging) notify battery-good "On battery" "$cap%" ;;
-                  Full) notify battery-full-charged "Fully charged" "$cap%" ;;
-                esac
+                [[ $status == Full ]] && notify battery-full-charged "Fully charged" "$cap%"
                 prev_status=$status
               fi
-              if [[ $status == Discharging ]]; then
+              if [[ $plugged == 0 ]]; then
                 if (( cap <= 10 )) && [[ $warned != critical ]]; then
                   notify battery-caution "Battery critical" "$cap%"
                   warned=critical
