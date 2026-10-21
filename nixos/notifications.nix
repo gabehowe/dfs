@@ -39,9 +39,11 @@ in
       urgency_critical = {
         background = "#ffaf00";
       };
-      bluetooth = systemStyle // { appname = "Bluetooth"; };
-      network = systemStyle // { appname = "Network"; };
-      battery = systemStyle // { appname = "Battery"; };
+      # Sections are emitted alphabetically and later rules win, so these must
+      # sort after urgency_* or the urgency background overrides them.
+      z_bluetooth = systemStyle // { appname = "Bluetooth"; };
+      z_network = systemStyle // { appname = "Network"; };
+      z_battery = systemStyle // { appname = "Battery"; };
     };
   };
   home-manager.sharedModules = [
