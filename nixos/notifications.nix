@@ -74,6 +74,16 @@ in
           text = ''
             nmcli monitor | while read -r line; do
               case $line in
+                *": using connection '"*"'")
+                  # printed when a device starts activating; skip lo, bridges, veths, etc.
+                  dev=''${line%%: using connection *}
+                  case $(nmcli -g GENERAL.TYPE device show "$dev" 2>/dev/null || true) in
+                    wifi | ethernet) ;;
+                    *) continue ;;
+                  esac
+                  conn=''${line#*: using connection }
+                  notify-send -a Network -i network-transmit-receive -h string:x-dunst-stack-tag:network "Connecting..." "''${conn//\'/}"
+                  ;;
                 *" is now the primary connection")
                   conn=''${line% is now the primary connection}
                   notify-send -a Network -i network-wired -h string:x-dunst-stack-tag:network "Connected" "''${conn//\'/}"
