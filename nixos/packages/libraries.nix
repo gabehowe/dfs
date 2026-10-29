@@ -20,6 +20,7 @@
     libxi
     libxft
     freetype
+    icu
     fontconfig
   ];
 

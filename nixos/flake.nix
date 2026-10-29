@@ -8,11 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-patch-claude-284 = {
-      url = "https://github.com/NixOS/nixpkgs/pull/567989.diff";
-      flake = false;
-    };
-
     winapps = {
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";

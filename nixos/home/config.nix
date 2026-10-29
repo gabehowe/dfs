@@ -170,8 +170,6 @@
     enableSshSupport = true;
   };
   xdg.configFile."clangd/config.yaml".text = ''
-CompileFlags:
-  Add: [-std=c++17]          # extra flags applied on top of compile_commands
 Diagnostics:
   UnusedIncludes: Strict
   ClangTidy:
