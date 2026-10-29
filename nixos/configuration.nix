@@ -105,23 +105,6 @@
   hardware.sane.enable = true;
 
 
-  ## Xilinx Vivado udev rules
-  systemd.services.systemd-udev-settle.enable = true;
-  services.udev.extraRules = ''
-      # Xilinx rules
-    ATTR{idVendor}=="1443", MODE:="666"
-    ACTION=="add", ATTR{idVendor}=="0403", ATTR{manufacturer}=="Digilent", MODE:="666"
-    ACTION=="add", ATTR{idVendor}=="0403", ATTR{manufacturer}=="Xilinx", MODE:="666"
-
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="0008", MODE="666"
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="0007", MODE="666"
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="0009", MODE="666"
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="000d", MODE="666"
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="000f", MODE="666"
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="0013", MODE="666"
-    ATTR{idVendor}=="03fd", ATTR{idProduct}=="0015", MODE="666"
-
-  '';
 
   ## X Server
   services.xserver = {
